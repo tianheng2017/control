@@ -9,7 +9,7 @@ return [
     'appid'     => 1400009099,
 
     // 短信应用SDK AppKey
-    'appkey'    => "9ff91d87c2cd7cd0ea762f141975d1df37481d48700d70ac37470aefc60f9bad",
+    'appkey'    => "",
 
     // 签名内容
     'sms_sign'  => "腾讯云",
