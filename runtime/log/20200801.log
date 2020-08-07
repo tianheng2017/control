@@ -1,0 +1,9 @@
+[2020-08-01 20:12:48][sql] CONNECT:[ UseTime:0.099355s ] mysql:host=106.55.42.53;port=3306;dbname=sql_106_55_42_53;charset=utf8
+[2020-08-01 20:12:49][sql] SHOW FULL COLUMNS FROM reimbuse [ RunTime:0.064655s ]
+[2020-08-01 20:12:49][sql] SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'reimbuse' [ RunTime:0.064258s ]
+[2020-08-01 21:03:12][sql] CONNECT:[ UseTime:0.114976s ] mysql:host=106.55.42.53;port=3306;dbname=sql_106_55_42_53;charset=utf8
+[2020-08-01 21:03:12][sql] SHOW FULL COLUMNS FROM reimbuse_records [ RunTime:0.075702s ]
+[2020-08-01 21:03:12][sql] SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'reimbuse_records' [ RunTime:0.075198s ]
+[2020-08-01 21:03:22][sql] CONNECT:[ UseTime:0.097452s ] mysql:host=106.55.42.53;port=3306;dbname=sql_106_55_42_53;charset=utf8
+[2020-08-01 21:03:22][sql] SHOW FULL COLUMNS FROM reimbuse_records [ RunTime:0.065510s ]
+[2020-08-01 21:03:22][sql] SELECT table_name,table_comment FROM information_schema.TABLES WHERE table_schema = 'easyadmin' AND table_name = 'reimbuse_records' [ RunTime:0.062148s ]
