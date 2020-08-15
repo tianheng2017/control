@@ -22,7 +22,7 @@ trait Curd
     public function index()
     {
         if ($this->request->isAjax()) {
-            if (input('selectFieds')) {
+            if (input('selectFields')) {
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
@@ -114,7 +114,7 @@ trait Curd
         $header = [];
         foreach ($dbList as $vo) {
             $comment = !empty($vo['Comment']) ? $vo['Comment'] : $vo['Field'];
-            if (!in_array($vo['Field'], $this->noExportFileds)) {
+            if (!in_array($vo['Field'], $this->noExportFields)) {
                 $header[] = [$comment, $vo['Field']];
             }
         }
@@ -144,7 +144,7 @@ trait Curd
         if (!$row) {
             $this->error('数据不存在');
         }
-        if (!in_array($post['field'], $this->allowModifyFileds)) {
+        if (!in_array($post['field'], $this->allowModifyFields)) {
             $this->error('该字段不允许修改：' . $post['field']);
         }
         try {
