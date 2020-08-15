@@ -64,7 +64,7 @@ class Excel
                     // 解析字段
                     $realData = self::formatting($header[$key], trim(self::formattingField($row, $value[1])), $row);
                     // 写入excel
-                    $sheet->setCellValue(Coordinate::stringFromColumnIndex($span) . $column, $realData);
+                    $sheet->setCellValue(Coordinate::stringFromColumnIndex($span) . $column, $realData."\t");
                     $span++;
                 }
 
