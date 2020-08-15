@@ -69,7 +69,7 @@ trait Curd
      */
     public function edit()
     {
-        $row = $this->model->find($this->request->param($this->pk));
+        $row = $this->model->find($this->request->param($this->model->getPk()));
         $row->isEmpty() && $this->error('数据不存在');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
@@ -91,7 +91,7 @@ trait Curd
      */
     public function delete()
     {
-        $row = $this->model->whereIn($this->pk, $this->request->param($this->pk))->select();
+        $row = $this->model->whereIn($this->model->getPk(), $this->request->param($this->model->getPk()))->select();
         $row->isEmpty() && $this->error('数据不存在');
         try {
             $save = $row->delete();
@@ -135,12 +135,12 @@ trait Curd
     {
         $post = $this->request->post();
         $rule = [
-            $this->pk.'|ID'    => 'require',
+            $this->model->getPk().'|主键'    => 'require',
             'field|字段'       => 'require',
             'value|值'         => 'require',
         ];
         $this->validate($post, $rule);
-        $row = $this->model->find($post[$this->pk]);
+        $row = $this->model->find($post[$this->model->getPk()]);
         if (!$row) {
             $this->error('数据不存在');
         }
