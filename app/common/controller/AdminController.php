@@ -41,7 +41,7 @@ class AdminController extends BaseController
      * 允许修改的字段
      * @var array
      */
-    protected $allowModifyFileds = [
+    protected $allowModifyFields = [
         'account_status',
         'status',
         'sort',
@@ -55,7 +55,7 @@ class AdminController extends BaseController
      * 不导出的字段信息
      * @var array
      */
-    protected $noExportFileds = ['delete_time', 'update_time'];
+    protected $noExportFields = ['delete_time', 'update_time'];
 
     /**
      * 下拉选择条件
@@ -67,7 +67,7 @@ class AdminController extends BaseController
      * 是否关联查询
      * @var bool
      */
-    protected $relationSerach = false;
+    protected $relationSearch = false;
 
     /**
      * 模板布局, false取消
@@ -151,7 +151,7 @@ class AdminController extends BaseController
                 continue;
             }
             $op = isset($ops[$key]) && !empty($ops[$key]) ? $ops[$key] : '%*%';
-            if ($this->relationSerach && count(explode('.', $key)) == 1) {
+            if ($this->relationSearch && count(explode('.', $key)) == 1) {
                 $key = "{$tableName}.{$key}";
             }
             switch (strtolower($op)) {
@@ -185,7 +185,7 @@ class AdminController extends BaseController
      */
     public function selectList()
     {
-        $fields = input('selectFieds');
+        $fields = input('selectFields');
         $data = $this->model
             ->where($this->selectWhere)
             ->field($fields)
