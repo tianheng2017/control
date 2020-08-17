@@ -2,28 +2,25 @@
 
 namespace app\admin\controller\system;
 
-use app\admin\model\SystemAdmin;
+
+use app\admin\model\SystemLog;
 use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
 use EasyAdmin\annotation\NodeAnotation;
 use think\App;
 
 /**
- * @ControllerAnnotation(title="系统日志")
+ * @ControllerAnnotation(title="操作日志管理")
+ * Class Auth
+ * @package app\admin\controller\system
  */
 class Log extends AdminController
 {
 
-    use \app\admin\traits\Curd;
-
-    protected $relationSerach = true;
-
     public function __construct(App $app)
     {
         parent::__construct($app);
-
-        $this->model = new \app\admin\model\SystemLog();
-        
+        $this->model = new SystemLog();
     }
 
     /**
@@ -32,20 +29,27 @@ class Log extends AdminController
     public function index()
     {
         if ($this->request->isAjax()) {
-            if (input('selectFieds')) {
+            if (input('selectFields')) {
                 return $this->selectList();
             }
-            list($page, $limit, $where) = $this->buildTableParames();
+            [$page, $limit, $where, $excludeFields] = $this->buildTableParames(['month']);
+
+            $month = (isset($excludeFields['month']) && !empty($excludeFields['month']))
+                ? date('Ym',strtotime($excludeFields['month']))
+                : date('Ym');
             $count = $this->model
-                ->withJoin('systemAdmin', 'LEFT')
+                ->setMonth($month)
+                ->with('admin')
                 ->where($where)
-                ->count();
+                ->select();
             $list = $this->model
-                ->withJoin('systemAdmin', 'LEFT')
+                ->setMonth($month)
+                ->with('admin')
                 ->where($where)
                 ->page($page, $limit)
                 ->order($this->sort)
                 ->select();
+
             $data = [
                 'code'  => 0,
                 'msg'   => '',
@@ -57,4 +61,4 @@ class Log extends AdminController
         return $this->fetch();
     }
 
-}
+} 
