@@ -1,11 +1,17 @@
+<style>
+    .layui-word-aux{
+        height: 36px;
+        line-height: 36px;
+        color: unset!important;
+    }
+</style>
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">登录账户</label>
+            <label class="layui-form-label">登录账户</label>
             <div class="layui-input-block">
-                <input type="text" name="username" class="layui-input" readonly value="{$row.username|default=''}">
-                <tip>填写登录账户。</tip>
+                <span class="layui-word-aux">{$row.username|default=''}</span>
             </div>
         </div>
 
@@ -21,7 +27,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">备注信息</label>
             <div class="layui-input-block">
-                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息">{$row.username|default=''}</textarea>
+                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息">{$row.remark|default=''}</textarea>
             </div>
         </div>
 
