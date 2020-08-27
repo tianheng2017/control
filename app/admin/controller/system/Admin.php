@@ -70,7 +70,7 @@ class Admin extends AdminController
     public function add()
     {
         if ($this->request->isAjax()) {
-            $post = $this->request->post();
+            $post = $this->request->only(['username','auth_ids','remark'],'post');
             $authIds = $this->request->post('auth_ids', []);
             $post['auth_ids'] = implode(',', array_keys($authIds));
             $rule = [];
@@ -93,14 +93,11 @@ class Admin extends AdminController
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
         if ($this->request->isAjax()) {
-            $post = $this->request->post();
+            $post = $this->request->only(['auth_ids','remark'],'post');
             $authIds = $this->request->post('auth_ids', []);
             $post['auth_ids'] = implode(',', array_keys($authIds));
             $rule = [];
             $this->validate($post, $rule);
-            if (isset($row['password'])) {
-                unset($row['password']);
-            }
             try {
                 $save = $row->save($post);
                 TriggerService::updateMenu($id);
@@ -122,7 +119,7 @@ class Admin extends AdminController
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
         if ($this->request->isAjax()) {
-            $post = $this->request->post();
+            $post = $this->request->only(['password','password_again'],'post');
             $rule = [
                 'password|登录密码'       => 'require',
                 'password_again|确认密码' => 'require',
