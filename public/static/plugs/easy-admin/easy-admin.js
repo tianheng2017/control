@@ -1037,7 +1037,9 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 title = title || '确定进行该操作？';
 
                 if (direct === 'true') {
-                    window.location.href = admin.url(url);
+                    admin.msg.confirm(title, function () {
+                        window.location.href = url;
+                    });
                     return false;
                 }
 
