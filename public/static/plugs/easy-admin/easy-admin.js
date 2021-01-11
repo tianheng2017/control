@@ -7,6 +7,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
         upload = layui.upload,
         element = layui.element,
         laytpl = layui.laytpl,
+        transfer = layui.transfer,
         tableSelect = layui.tableSelect;
 
     layer.config({
@@ -23,6 +24,28 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
     var admin = {
         config: {
             shade: [0.02, '#000'],
+        },
+        // 穿梭框封装
+        transfer_common: function (url, data, id , title, select = null){
+            var index = layer.load(1, admin.config);
+            $.ajax({
+                url: admin.url(url),
+                type: "GET",
+                dataType:"json",
+                data: data,
+                success:function(res){
+                    layer.close(index);
+                    transfer.render({
+                        elem: '#' + id
+                        ,data: res
+                        ,showSearch: true
+                        ,width: 300
+                        ,title: title
+                        ,value: select ? select : null
+                        ,id: id
+                    });
+                }
+            });
         },
         url: function (url) {
             return '/' + CONFIG.ADMIN + '/' + url;
