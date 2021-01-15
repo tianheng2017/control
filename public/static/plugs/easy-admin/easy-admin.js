@@ -1094,7 +1094,9 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         admin.msg.success(res.msg, function () {
                             table.reload(tableId);
                             //树表格也刷新
-                            $('[data-treetable-refresh]').trigger("click");
+                            try{
+                                $('[data-treetable-refresh]').trigger("click");
+                            }catch (e) {}
                         });
                     })
                 });
