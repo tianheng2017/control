@@ -8,7 +8,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
         element = layui.element,
         laytpl = layui.laytpl,
         transfer = layui.transfer,
-        tableSelect = layui.tableSelect;
+        tableSelect = layui.tableSelect
+        util = layui.uitl;
 
     layer.config({
         skin: 'layui-layer-easy'
@@ -24,6 +25,16 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
     var admin = {
         config: {
             shade: [0.02, '#000'],
+        },
+        //js版empty，判断变量是否为空
+        empty: function (r) {
+            var n, t, e, f = [void 0, null, !1, 0, "", "0"];
+            for (t = 0, e = f.length; t < e; t++) if (r === f[t]) return !0;
+            if ("object" == typeof r) {
+                for (n in r) if (r.hasOwnProperty(n)) return !1;
+                return !0
+            }
+            return !1
         },
         // 穿梭框封装
         transfer_common: function (url, data, id , title, select = null){
@@ -707,6 +718,17 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     var value = eval("data." + field);
                 } catch (e) {
                     var value = undefined;
+                }
+                return '<span>' + value + '</span>';
+            },
+            //时间戳转日期
+            date: function (data, option) {
+                var field = option.field, value = '';
+                try {
+                    value = eval("data." + field);
+                } catch (e) {}
+                if (!admin.empty(value)){
+                    value = util.toDateString(value * 1000, option.format || 'yyyy-MM-dd HH:mm:ss');
                 }
                 return '<span>' + value + '</span>';
             },
