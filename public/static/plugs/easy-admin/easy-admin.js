@@ -885,6 +885,9 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                                 '</style>');
                         });
                     }
+                },
+                end: function () {
+                    index = null;
                 }
             });
             if (admin.checkMobile() || width === undefined || height === undefined) {
