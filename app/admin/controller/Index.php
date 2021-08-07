@@ -5,7 +5,6 @@ namespace app\admin\controller;
 use app\admin\model\SystemAdmin;
 use app\common\controller\AdminController;
 use think\App;
-use app\admin\model\{ Orders, Sales };
 
 class Index extends AdminController
 {
