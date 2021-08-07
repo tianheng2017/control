@@ -15,12 +15,10 @@ class CommonLogic extends AdminController
         parent::__construct($app);
     }
     
-    // 解析xlsx数据
+    // 解析xlsx文件数据
     public function getImportData($file)
     {
-        $data = [
-            'file'        => $file,
-        ];
+        $data = ['file' => $file];
 
         $uploadConfig = sysconfig('upload');
         empty($data['upload_type']) && $data['upload_type'] = $uploadConfig['upload_type'];

@@ -9,7 +9,7 @@ class Error
     public function __call($name, $arguments)
     {
        throw new HttpResponseException([
-           'code'   =>  3,
+           'code'   =>  0,
            'msg'    =>  '异常请求',
            'data'   =>  null
        ], 200, $header = [

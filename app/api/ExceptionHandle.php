@@ -53,7 +53,7 @@ class ExceptionHandle extends Handle
     {
         if ($e instanceof HttpException || $e instanceof ValidateException || $e instanceof ErrorException) {
             return json([
-                'code'  =>  $e instanceof ValidateException ? 1 : 3,
+                'code'  =>  $e instanceof ValidateException ? 1 : 0,
                 'msg'   =>  $e->getMessage(),
                 'data'  =>  null,
             ], 200, $header = [
