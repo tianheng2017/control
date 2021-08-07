@@ -70,7 +70,7 @@ trait Curd
     public function edit()
     {
         $row = $this->model->find($this->request->param($this->model->getPk()));
-        $row->isEmpty() && $this->error('数据不存在');
+        empty($row) && $this->error('数据不存在');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
             $rule = [];
