@@ -49,7 +49,10 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.listen();
         },
         add: function () {
-            ea.listen();
+            ea.listen(function (data) {
+                console.log(data);
+                return false;
+            });
         },
         edit: function () {
             ea.listen();
