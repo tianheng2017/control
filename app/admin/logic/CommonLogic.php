@@ -25,7 +25,7 @@ class CommonLogic extends AdminController
 
         $rule = [
             'upload_type|指定上传类型有误' => "in:{$uploadConfig['upload_allow_type']}",
-            'file|文件'              => "require|file|fileExt:{$uploadConfig['upload_allow_ext']}|fileSize:{$uploadConfig['upload_allow_size']}",
+            'file|文件'                   => "require|file|fileExt:{$uploadConfig['upload_allow_ext']}|fileSize:{$uploadConfig['upload_allow_size']}",
         ];
         $this->validate($data, $rule);
 
