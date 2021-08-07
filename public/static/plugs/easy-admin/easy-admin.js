@@ -1295,7 +1295,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
 
                             if (typeof preposeCallback === 'function') {
                                 dataField = preposeCallback(dataField);
-                                // 当返回false时，拦截提交，方便打印data
+                                // 当返回false时，拦截提交，方便打印提交数据
                                 if (dataField === false){
                                     return false;
                                 }
