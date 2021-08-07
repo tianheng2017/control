@@ -35,6 +35,12 @@ abstract class BaseController
      * @var array
      */
     protected $middleware = [];
+    
+    /**
+     * 错误信息
+     * @var string
+     */
+    protected static $error;
 
     /**
      * 构造方法
@@ -53,6 +59,16 @@ abstract class BaseController
     // 初始化
     protected function initialize()
     {}
+    
+    /**
+     * 返回错误信息
+     * @access public
+     * @return string|array
+     */
+    public static function getError()
+    {
+        return self::$error;
+    }
 
     /**
      * 验证数据

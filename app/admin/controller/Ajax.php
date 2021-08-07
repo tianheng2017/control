@@ -45,7 +45,7 @@ class Ajax extends AdminController
      */
     public function clearCache()
     {
-//        Cache::clear();
+        Cache::clear();
         $this->success('清理缓存成功');
     }
 
@@ -71,14 +71,11 @@ class Ajax extends AdminController
                 ->setUploadConfig($uploadConfig)
                 ->setFile($data['file'])
                 ->save();
+            if ($upload['save'] <> true) throw new Exception($upload['msg']);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        if ($upload['save'] == true) {
-            $this->success($upload['msg'], ['id' => $upload['id'], 'url' => $upload['url']]);
-        } else {
-            $this->error($upload['msg']);
-        }
+        $this->success($upload['msg'], ['id' => $upload['id'], 'url' => $upload['url']]);
     }
 
     /**

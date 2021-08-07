@@ -6,10 +6,10 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="__STATIC__/admin/new_css/materialdesignicons.min.css?v={$version}">
-    <link rel="stylesheet" href="__STATIC__/admin/new_css/vendor.bundle.base.css?v={$version}">
-    <link rel="stylesheet" href="__STATIC__/admin/new_css/style.css?v={$version}">
-    <link rel="shortcut icon" href="__STATIC__/admin/new_images/favicon.png" />
+    <link rel="stylesheet" href="__STATIC__/admin/new_css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="__STATIC__/admin/new_css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="__STATIC__/admin/new_css/style.css">
+    <link rel="shortcut icon" href="{:sysconfig('site', 'site_ico')}" />
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -24,9 +24,9 @@
             VERSION: "{$version|default='1.0.0'}",
         };
     </script>
-    <script src="__STATIC__/plugs/layui-v2.5.6/layui.all.js?v={$version}" charset="utf-8"></script>
-    <script src="__STATIC__/plugs/require-2.3.6/require.js?v={$version}" charset="utf-8"></script>
-    <script src="__STATIC__/config-admin.js?v={$version}" charset="utf-8"></script>
+    <script src="__STATIC__/plugs/layui-v2.5.6/layui.all.js" charset="utf-8"></script>
+    <script src="__STATIC__/plugs/require-2.3.6/require.js" charset="utf-8"></script>
+    <script src="__STATIC__/config-admin.js" charset="utf-8"></script>
     <style>
         body {
             background-image: url(/static/admin/new_images/bg4/bg_{:mt_rand(1,14)}.jpg);

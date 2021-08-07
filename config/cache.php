@@ -24,6 +24,12 @@ return [
             'tag_prefix' => 'tag:',
             // 序列化机制 例如 ['serialize', 'unserialize']
             'serialize'  => ['serialize', 'unserialize'],
+            // 密码
+            'password'   => '123654',
+            // 端口
+            'port'       => 6379,
+            // 数据库
+            'select'     => 1,
         ],
         'file' => [
             // 驱动方式

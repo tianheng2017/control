@@ -20,7 +20,6 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 cols: [[
                     {type: "checkbox"},
                     {field: 'id', width: 80, title: 'ID'},
-                    {field: 'sort', width: 80, title: '排序', edit: 'text'},
                     {field: 'title', minWidth: 80, title: '权限名称'},
                     {field: 'remark', minWidth: 80, title: '备注信息'},
                     {field: 'status', title: '状态', width: 85, search: 'select', selectList: {0: '禁用', 1: '启用'}, templet: ea.table.switch},
