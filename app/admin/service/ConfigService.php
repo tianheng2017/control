@@ -15,5 +15,4 @@ class ConfigService
             return $version;
         }, 3600);
     }
-
 }
