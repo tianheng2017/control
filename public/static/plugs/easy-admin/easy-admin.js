@@ -389,10 +389,10 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     form.render();
                     $.each(newCols, function (ncI, ncV) {
                         if (ncV.search === 'range') {
-                            laydate.render({range: true, type: ncV.timeType, elem: '[name="' + ncV.field + '"]'});
+                            laydate.render({range: true, type: ncV.timeType, elem: '[name="' + ncV.fieldAlias + '"]'});
                         }
                         if (ncV.search === 'time') {
-                            laydate.render({type: ncV.timeType, elem: '[name="' + ncV.field + '"]'});
+                            laydate.render({type: ncV.timeType, elem: '[name="' + ncV.fieldAlias + '"]'});
                         }
                     });
                 }
@@ -574,7 +574,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                                 };
                                 operat.url = admin.table.toolSpliceUrl(operat.url, operat.field, data);
                                 if (admin.checkAuth(operat.auth, elem)) {
-                                    html += admin.table.buildOperatHtml(operat);
+                                    if (typeof operat.render === 'function') {
+                                        html += operat.render(data, option) ? admin.table.buildOperatHtml(operat) : '';
+                                    } else {
+                                        html += admin.table.buildOperatHtml(operat);
+                                    }
                                 }
                                 break;
                             case 'delete':
@@ -591,7 +595,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                                 };
                                 operat.url = admin.table.toolSpliceUrl(operat.url, operat.field, data);
                                 if (admin.checkAuth(operat.auth, elem)) {
-                                    html += admin.table.buildOperatHtml(operat);
+                                    if (typeof operat.render === 'function') {
+                                        html += operat.render(data, option) ? admin.table.buildOperatHtml(operat) : '';
+                                    } else {
+                                        html += admin.table.buildOperatHtml(operat);
+                                    }
                                 }
                                 break;
                         }
@@ -609,7 +617,11 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                             operat.extend = operat.extend || '';
                             operat.url = admin.table.toolSpliceUrl(operat.url, operat.field, data);
                             if (admin.checkAuth(operat.auth, elem)) {
-                                html += admin.table.buildOperatHtml(operat);
+                                if (typeof operat.render === 'function') {
+                                    html += operat.render(data, option) ? admin.table.buildOperatHtml(operat) : '';
+                                } else {
+                                    html += admin.table.buildOperatHtml(operat);
+                                }
                             }
                         });
                     }
