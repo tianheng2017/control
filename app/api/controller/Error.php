@@ -12,7 +12,7 @@ class Error
            'code'   =>  3,
            'msg'    =>  '异常请求',
            'data'   =>  null
-       ],200, $header = [
+       ], 200, $header = [
            'Access-Control-Allow-Headers'     => '*',
            'Access-Control-Allow-Origin'      => '*',
            'Access-Control-Allow-Credentials' => 'true',

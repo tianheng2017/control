@@ -12,7 +12,7 @@ class Login extends ApiBaseController
     {
         $post = $this->request->post();
         $rule = [
-            'mobile|手机号'     =>  'require|mobile',
+            'mobile|手机号'    =>  'require|mobile',
             'password|密码'    =>  'require',
         ];
         $this->apiValidate($post, $rule);
