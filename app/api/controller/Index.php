@@ -26,8 +26,8 @@ class Index extends BaseController
                 'check_time|最近一次核酸检测时间'     =>  'require|date',
                 'check_result|核酸检测结果'           =>  'require',
                 'community|居住地所属社区'            =>  'require',
-                'mobile|手机号'                       =>  'require|mobile',
-                'photo_id|健康码、行程码'             =>   'require',
+                'mobile|手机号'                      =>   'require|mobile',
+                'image|健康码、行程码'                =>  'require',
             ];
             $this->validate($post, $rule);
 
