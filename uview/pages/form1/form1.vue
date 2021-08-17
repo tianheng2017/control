@@ -40,7 +40,7 @@
 				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择居住地所属社区" @click="selectShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="上传健康码、行程码" prop="photo">
-				<u-upload ref="uUpload" :action="upload_url" width="160" height="160"></u-upload>
+				<u-upload ref="uUpload" :action="upload_url" width="160" height="160" @on-change="uploadChange" :multiple="false" :max-count="1"></u-upload>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="手机号码" prop="mobile">
 				<u-input :border="border" placeholder="请输入手机号" v-model="model.mobile" type="number"></u-input>
@@ -81,6 +81,7 @@ export default {
 				photo_id: '',
 				mobile: '',
 				code: '',
+				code_id:'',
 				arrival_time_lable: '',
 				check_time_lable: '',
 				community_lable: '',
@@ -302,10 +303,10 @@ export default {
 				setTimeout(() => {
 					uni.hideLoading();
 					// 这里此提示会被this.start()方法中的提示覆盖
-					this.$u.toast('验证码已发送');
+					this.$u.toast('模拟验证码已发送');
 					// 通知验证码组件内部开始倒计时
 					this.$refs.uCode.start();
-				}, 2000);
+				}, 1500);
 			} else {
 				this.$u.toast('倒计时结束后再发送');
 			}
@@ -317,6 +318,12 @@ export default {
 			} = await this.$u.api.getCommunityList()
 			if (code == 1) {
 				this.selectList = data
+			}
+		},
+		//上传完成事件
+		uploadChange(res, index, lists, name){
+			if (res.data.code == 1) {
+				this.model.photo_id = res.data.id
 			}
 		}
 	}
