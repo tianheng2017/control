@@ -38,7 +38,7 @@ class Index extends ApiBaseController
             //...
 
             (new Form1())->save($post);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return result(0, $e->getMessage());
         }
         return result(1,'提交成功');
