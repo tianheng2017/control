@@ -18,6 +18,15 @@
             }
             
         }
+		,{
+		    "path" : "pages/form2/form2",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "疫苗接种人员信息填报",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

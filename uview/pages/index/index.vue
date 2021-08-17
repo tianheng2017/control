@@ -4,7 +4,7 @@
 			<u-button :ripple="true" :customStyle="customStyle" @click="toForm1">返沙人员信息填报</u-button>
 		</view>
 		<view class="button-demo">
-			<u-button :ripple="true" :customStyle="customStyle">疫苗接种人员信息填报</u-button>
+			<u-button :ripple="true" :customStyle="customStyle" @click="toForm2">疫苗接种人员信息填报</u-button>
 		</view>
 		<view class="button-demo">
 			<u-button :ripple="true" :customStyle="customStyle">购药人员自主填报</u-button>
@@ -28,6 +28,11 @@
 			toForm1(){
 				setTimeout(() => {
 					this.$u.route('pages/form1/form1')
+				}, 500)
+			},
+			toForm2(){
+				setTimeout(() => {
+					this.$u.route('pages/form2/form2')
 				}, 500)
 			}
 		}

@@ -3,10 +3,10 @@
 namespace app\api\controller;
 
 use app\admin\model\Community as CommunityModel;
-use app\ApiBaseController;
+use app\BaseController;
 use think\Exception;
 
-class Community extends ApiBaseController
+class Community extends BaseController
 {
     public function getCommunityList()
     {

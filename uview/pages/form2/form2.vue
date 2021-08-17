@@ -4,43 +4,20 @@
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="姓名" prop="name">
 				<u-input :border="border" placeholder="请输入姓名" v-model="model.name" type="text"></u-input>
 			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="性别" prop="sex_lable">
-				<u-input :border="border" type="select" :select-open="actionSheetShow" v-model="model.sex_lable" placeholder="请选择性别" @click="actionSheetShow = true"></u-input>
-			</u-form-item>
 			<u-form-item :label-style="labelStyle"  :label-position="labelPosition" label="身份证号" prop="id_card">
 				<u-input :border="border" placeholder="请输入身份证号" v-model="model.id_card" type="text"></u-input>
 			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="现居住地址" prop="living">
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="居住地址" prop="living">
 				<u-input type="textarea" :border="border" placeholder="请填写现居住地址" v-model="model.living" :height="150" />
-			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="户籍所在地" prop="domicile">
-				<u-input type="textarea" :border="border" placeholder="请填写户籍所在地" v-model="model.domicile" :height="150" />
-			</u-form-item>
-			<u-form-item :label-style="labelStyle"  :label-position="labelPosition" label="工作单位" prop="employer">
-				<u-input :border="border" placeholder="请输入工作单位" v-model="model.employer" type="text"></u-input>
-			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="出发地、途径地及时间" prop="buy_way">
-				<u-input type="textarea" :border="border" :placeholder="buy_way_placeholder" v-model="model.buy_way" :height="200" />
-			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="到沙时间" prop="arrival_time">
-				<u-input :border="border" type="select" :select-open="arrivalTimeShow" v-model="model.arrival_time" placeholder="请选择到沙时间" @click="arrivalTimeShow = true"></u-input>
-			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="出发地" prop="departure">
-				<u-input type="textarea" :border="border" placeholder="请填写出发地" v-model="model.departure" :height="150" />
-			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="最近一次核酸检测时间" prop="check_time">
-				<u-input :border="border" type="select" :select-open="checkTimeShow" v-model="model.check_time" placeholder="请选择到沙时间" @click="checkTimeShow = true"></u-input>
-			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="最近一次核酸检测结果" prop="check_result">
-				<u-radio-group v-model="radio" :width="radioCheckWidth" :wrap="radioCheckWrap">
-					<u-radio shape="circle" v-for="(item, index) in radioList" :key="index" :name="item.name" @change="radioChange(index)">{{ item.name }}</u-radio>
-				</u-radio-group>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="居住地所属社区" prop="community_lable">
 				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择居住地所属社区" @click="selectShow = true"></u-input>
 			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="上传健康码、行程码" prop="photo">
-				<u-upload ref="uUpload" :action="upload_url" width="160" height="160" @on-change="uploadSuccess" :multiple="false" :max-count="1"></u-upload>
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="接种时间" prop="arrival_time">
+				<u-input :border="border" type="select" :select-open="arrivalTimeShow" v-model="model.arrival_time" placeholder="请选择接种时间" @click="arrivalTimeShow = true"></u-input>
+			</u-form-item>
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="接种剂次" prop="community_lable">
+				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择接种剂次" @click="selectShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="手机号码" prop="mobile">
 				<u-input :border="border" placeholder="请输入手机号" v-model="model.mobile" type="number"></u-input>
@@ -54,8 +31,8 @@
 		
 		<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
 		<u-select mode="single-column" :default-value="selectDefault" :list="selectList" v-model="selectShow" @confirm="selectConfirm"></u-select>
-		<u-picker :params="params" title="到沙时间" :start-year="2018" :end-year="2030" mode="time" v-model="arrivalTimeShow" @confirm="arrivalTimeConfirm"></u-picker>
-		<u-picker :params="params" title="最近一次核酸检测时间" :start-year="2018" :end-year="2030" mode="time" v-model="checkTimeShow" @confirm="checkTimeConfirm"></u-picker>
+		<u-picker title="到达时间" :start-year="2018" :end-year="2030" mode="time" v-model="arrivalTimeShow" @confirm="arrivalTimeConfirm"></u-picker>
+		<u-picker title="最近一次核酸检测时间" :start-year="2018" :end-year="2030" mode="time" v-model="checkTimeShow" @confirm="checkTimeConfirm"></u-picker>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
 		<u-toast ref="uToast" />
 	</view>
@@ -103,13 +80,6 @@ export default {
 			buy_way_placeholder: '例：2021年8月14日19点58分从四川省成都市乘坐火车（车次：G25067车厢4F出发）于2021年8月14日24:00到达，而后乘坐私家车到达沙雅县X小区X号楼X单元X楼X户',
 			upload_url: this.$u.http.config.baseUrl + '/api/common/upload',
 			upload_lists: [],
-			params: {
-				year: true,
-				month: true,
-				day: true,
-				hour: true,
-				minute: true
-			},
 			actionSheetList: [
 				{
 					text: '男'
@@ -288,11 +258,11 @@ export default {
 		},
 		// 到沙时间回调
 		arrivalTimeConfirm(e) {
-			this.model.arrival_time = e.year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e.minute
+			this.model.arrival_time = e.year + '-' + e.month + '-' + e.day
 		},
 		// 最近一次核酸检测时间回调
 		checkTimeConfirm(e) {
-			this.model.check_time = e.year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e.minute
+			this.model.check_time = e.year + '-' + e.month + '-' + e.day
 		},
 		// 最近一次核酸检测结果回调
 		radioChange(index) {
