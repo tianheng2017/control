@@ -30,7 +30,7 @@ class Index extends ApiBaseController
                 'mobile|手机号'                       =>  'require|mobile',
                 'photo_id|健康码、行程码'             =>   'require',
             ];
-            $this->apiValidate($post, $rule);
+            $this->validate($post, $rule);
 
             //验证码校验
 
