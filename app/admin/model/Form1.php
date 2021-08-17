@@ -13,5 +13,15 @@ class Form1 extends TimeModel
 
     
     
+    public function getSexList()
+    {
+        return ['0'=>'男','1'=>'女',];
+    }
+
+    public function getCheckResultList()
+    {
+        return ['0'=>'阴性','1'=>'阳性',];
+    }
+
 
 }
