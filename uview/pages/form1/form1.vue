@@ -253,7 +253,7 @@ export default {
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
 					console.log('验证成功');
-					this.$u.api.save_form1(this.model).then(res => {
+					this.$u.api.saveForm1(this.model).then(res => {
 						console.log(res);
 					})
 				} else {

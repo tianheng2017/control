@@ -16,7 +16,7 @@ class CheckToken
     {
         $token = $request->header('token');
         $controller = $request->controller();
-        $no_login = ['Login','Error'];
+        $no_login = ['Login','Error','Community'];
         if (in_array($controller, $no_login)){
             return $next($request);
         }
