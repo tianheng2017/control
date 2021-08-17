@@ -53,7 +53,7 @@
 		<u-button @click="submit" type="success" class="u-margin-top-80 u-margin-bottom-80">提交</u-button>
 		
 		<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
-		<u-select mode="single-column" :list="selectList" v-model="selectShow" @confirm="selectConfirm"></u-select>
+		<u-select mode="single-column" :default-value="selectDefault" :list="selectList" v-model="selectShow" @confirm="selectConfirm"></u-select>
 		<u-picker title="到达时间" :start-year="2018" :end-year="2030" mode="time" v-model="arrivalTimeShow" @confirm="arrivalTimeConfirm"></u-picker>
 		<u-picker title="最近一次核酸检测时间" :start-year="2018" :end-year="2030" mode="time" v-model="checkTimeShow" @confirm="checkTimeConfirm"></u-picker>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
@@ -109,6 +109,7 @@ export default {
 				},
 			],
 			selectList: [],
+			selectDefault: [0],
 			radioList: [
 				{
 					name: '阴性',
@@ -280,8 +281,10 @@ export default {
 		selectConfirm(e) {
 			this.model.community = '';
 			e.map((val, index) => {
+				console.log(index)
 				this.model.community_lable = val.label;
 				this.model.community = val.value;
+				this.selectDefault = [index]
 			})
 		},
 		// 验证码倒计时改变
