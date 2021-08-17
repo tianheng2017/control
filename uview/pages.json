@@ -1,0 +1,35 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "沙雅镇疫情防控管理系统"
+			}
+		}
+		,{
+            "path" : "pages/form1/form1",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "返沙人员信息填报",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uView",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#909399",
+	    "selectedColor": "#303133",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": []
+	}
+}
