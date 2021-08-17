@@ -33,6 +33,8 @@ class Index extends ApiBaseController
             $this->apiValidate($post, $rule);
 
             //验证码校验
+
+            //最近一次核酸检测阳性报警
             //...
 
             Form1::create($post);
