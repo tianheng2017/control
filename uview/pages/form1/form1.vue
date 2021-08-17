@@ -255,7 +255,7 @@ export default {
 							this.$refs.uToast.show({
 								title: '提交成功',
 								type: 'success',
-								// url: 'pages/index/index',
+								url: 'pages/index/index',
 							})
 							return;
 						}
