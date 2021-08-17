@@ -76,7 +76,7 @@
             <div class="layui-input-block">
                 <select name="community">
                     {foreach $getCommunityList as $k=>$v}
-                    <option value="{$k}" {in name="k" value="$row.community"} selected{/in}>{$v}</option>
+                    <option value="{$k}">{$v}</option>
                     {/foreach}
                 </select>
             </div>
