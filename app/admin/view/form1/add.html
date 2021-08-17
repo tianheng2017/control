@@ -76,7 +76,9 @@
             <label class="layui-form-label">居住地所属社区</label>
             <div class="layui-input-block">
                 <select name="community">
-
+                    {foreach $getCommunityList as $k=>$v}
+                    <option value="{$k}" {in name="k" value="$row.community"} selected{/in}>{$v}</option>
+                    {/foreach}
                 </select>
             </div>
         </div>
