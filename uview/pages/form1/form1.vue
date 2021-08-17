@@ -22,14 +22,14 @@
 			<u-form-item :label-position="labelPosition" label="出发地、途径地及时间" prop="buy_way">
 				<u-input type="textarea" :border="border" :placeholder="buy_way_placeholder" v-model="model.buy_way" :height="200" />
 			</u-form-item>
-			<u-form-item  :label-position="labelPosition" label="到沙时间" prop="arrival_time_lable">
-				<u-input :border="border" type="select" :select-open="arrivalTimeShow" v-model="model.arrival_time_lable" placeholder="请选择到沙时间" @click="arrivalTimeShow = true"></u-input>
+			<u-form-item  :label-position="labelPosition" label="到沙时间" prop="arrival_time">
+				<u-input :border="border" type="select" :select-open="arrivalTimeShow" v-model="model.arrival_time" placeholder="请选择到沙时间" @click="arrivalTimeShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="出发地" prop="departure">
 				<u-input type="textarea" :border="border" placeholder="请填写出发地" v-model="model.departure" :height="150" />
 			</u-form-item>
-			<u-form-item  :label-position="labelPosition" label="最近一次核酸检测时间" prop="check_time_lable">
-				<u-input :border="border" type="select" :select-open="checkTimeShow" v-model="model.check_time_lable" placeholder="请选择到沙时间" @click="checkTimeShow = true"></u-input>
+			<u-form-item  :label-position="labelPosition" label="最近一次核酸检测时间" prop="check_time">
+				<u-input :border="border" type="select" :select-open="checkTimeShow" v-model="model.check_time" placeholder="请选择到沙时间" @click="checkTimeShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="最近一次核酸检测结果" prop="check_result">
 				<u-radio-group v-model="radio" :width="radioCheckWidth" :wrap="radioCheckWrap">
@@ -82,8 +82,6 @@ export default {
 				mobile: '',
 				code: '',
 				code_id:'',
-				arrival_time_lable: '',
-				check_time_lable: '',
 				community_lable: '',
 			},
 			radio: '阴性',
@@ -266,13 +264,11 @@ export default {
 		},
 		// 到沙时间回调
 		arrivalTimeConfirm(e) {
-			this.model.arrival_time_lable = e.year + '-' + e.month + '-' + e.day
-			this.model.arrival_time = e.timestamp
+			this.model.arrival_time = e.year + '-' + e.month + '-' + e.day
 		},
 		// 最近一次核酸检测时间回调
 		checkTimeConfirm(e) {
-			this.model.check_time_lable = e.year + '-' + e.month + '-' + e.day
-			this.model.check_time = e.timestamp
+			this.model.check_time = e.year + '-' + e.month + '-' + e.day
 		},
 		// 最近一次核酸检测结果回调
 		radioChange(index) {
