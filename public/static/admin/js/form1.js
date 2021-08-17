@@ -18,7 +18,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 init: init,
                 cols: [[
                     {type: 'checkbox'},
-                    {field: 'id', title: 'id', width: 100, search: false},
+                    {field: 'id', hide: true},
                     {field: 'name', title: '姓名'},
                     {field: 'sex', search: 'select', selectList: ["男","女"], title: '性别'},
                     {field: 'id_card', title: '身份证'},
