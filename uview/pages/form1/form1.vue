@@ -40,10 +40,10 @@
 				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择居住地所属社区" @click="selectShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="上传健康码" prop="image1">
-				<u-upload ref="uUpload1" :action="upload_url" width="160" height="160" @on-change="uploadSuccess1" :multiple="false" :max-count="1"></u-upload>
+				<u-upload ref="uUpload1" :action="upload_url" width="160" height="160" @on-change="uploadChange1" :multiple="false" :max-count="1"></u-upload>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="上传行程码" prop="image2">
-				<u-upload ref="uUpload2" :action="upload_url" width="160" height="160" @on-change="uploadSuccess2" :multiple="false" :max-count="1"></u-upload>
+				<u-upload ref="uUpload2" :action="upload_url" width="160" height="160" @on-change="uploadChange2" :multiple="false" :max-count="1"></u-upload>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="手机号码" prop="mobile">
 				<u-input :border="border" placeholder="请输入手机号" v-model="model.mobile" type="number"></u-input>
@@ -146,7 +146,7 @@ export default {
 						min: 2,
 						max: 5,
 						message: '姓名长度在2到5个字符',
-						trigger: ['change','blur'],
+						trigger: ['blur'],
 					},
 					{
 						validator: (rule, value, callback) => {
@@ -159,7 +159,7 @@ export default {
 				sex: [
 					{
 						required: true,
-						message: '请选择居住地所在社区',
+						message: '请选择性别',
 						trigger: ['change','blur'],
 					},
 				],
@@ -169,7 +169,7 @@ export default {
 							return this.$u.test.idCard(value);
 						},
 						message: '身份证号格式不正确',
-						trigger: ['change','blur'],
+						trigger: ['blur'],
 					}
 				],
 				living: [
@@ -233,8 +233,8 @@ export default {
 						validator: (rule, value, callback) => {
 							return this.$u.test.mobile(value);
 						},
-						message: '请正确手机号码',
-						trigger: ['change','blur'],
+						message: '手机号码格式不正确',
+						trigger: ['blur'],
 					},
 				],
 				community: [
@@ -264,7 +264,7 @@ export default {
 							return this.$u.test.code(value, 6);
 						},
 						message: '请填写6位验证码',
-						trigger: ['change','blur'],
+						trigger: ['blur'],
 					},
 				],
 			},
@@ -368,18 +368,36 @@ export default {
 			}
 		},
 		//健康码上传成功事件
-		uploadSuccess1(data, index, lists, name){
+		uploadChange1(data, index, lists, name){
 			const res = JSON.parse(data.data)
 			if (res.code == 1) {
 				this.model.image1 = res.data.url
+				this.$refs.uToast.show({
+					title: '上传成功',
+					type: 'success',
+				})
+				return;
 			}
+			this.$refs.uToast.show({
+				title: '上传失败：' + res.msg,
+				type: 'error',
+			})
 		},
 		//行程码上传成功事件
-		uploadSuccess2(data, index, lists, name){
+		uploadChange2(data, index, lists, name){
 			const res = JSON.parse(data.data)
 			if (res.code == 1) {
 				this.model.image2 = res.data.url
+				this.$refs.uToast.show({
+					title: '上传成功',
+					type: 'success',
+				})
+				return;
 			}
+			this.$refs.uToast.show({
+				title: '上传失败：' + res.msg,
+				type: 'error',
+			})
 		}
 	}
 };

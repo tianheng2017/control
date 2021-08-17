@@ -22,11 +22,12 @@ class Index extends BaseController
                 'sex|性别'                           =>  'require',
                 'id_card|身份证号'                   =>  'require|idCard',
                 'arrival_time|到沙时间'              =>  'require|date',
-                'check_time|最近一次核酸检测时间'     =>  'require|date',
-                'check_result|核酸检测结果'           =>  'require',
-                'community|居住地所属社区'            =>  'require',
+                'check_time|最近一次核酸检测时间'    =>  'require|date',
+                'check_result|核酸检测结果'          =>  'require',
+                'community|居住地所属社区'           =>  'require',
                 'mobile|手机号'                      =>   'require|mobile',
-                'image|健康码、行程码'                =>  'require',
+                'image1|健康码'                      =>  'require',
+                'image2|行程码'                      =>  'require',
             ];
             $this->validate($post, $rule);
 
