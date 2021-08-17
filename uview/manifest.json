@@ -81,6 +81,8 @@
         "template" : "template.h5.html",
         "router" : {
             "mode" : "history"
-        }
+        },
+        "title" : "疫情防控系统",
+        "domain" : "https://h5.crowtoken.com"
     }
 }

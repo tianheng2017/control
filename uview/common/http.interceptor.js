@@ -1,6 +1,6 @@
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: 'https://p1.crowtoken.com',
+		baseUrl: 'https://crowtoken.com',
 		loadingText: '努力加载中~',
 		loadingTime: 800,
 	});
