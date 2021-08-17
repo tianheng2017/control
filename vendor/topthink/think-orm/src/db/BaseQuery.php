@@ -266,11 +266,11 @@ abstract class BaseQuery
     /**
      * 得到某个列的数组
      * @access public
-     * @param string $field 字段名 多个字段用逗号分隔
+     * @param string|array $field 字段名 多个字段用逗号分隔
      * @param string $key   索引
      * @return array
      */
-    public function column(string $field, string $key = ''): array
+    public function column($field, string $key = ''): array
     {
         return $this->connection->column($this, $field, $key);
     }
@@ -490,8 +490,8 @@ abstract class BaseQuery
                 // 子查询
             } elseif (false === strpos($table, ',')) {
                 if (strpos($table, ' ')) {
-                    list($item, $alias) = explode(' ', $table);
-                    $table              = [];
+                    [$item, $alias] = explode(' ', $table);
+                    $table          = [];
                     $this->alias([$item => $alias]);
                     $table[$item] = $alias;
                 }
@@ -502,7 +502,7 @@ abstract class BaseQuery
                 foreach ($tables as $item) {
                     $item = trim($item);
                     if (strpos($item, ' ')) {
-                        list($item, $alias) = explode(' ', $item);
+                        [$item, $alias] = explode(' ', $item);
                         $this->alias([$item => $alias]);
                         $table[$item] = $alias;
                     } else {
@@ -621,7 +621,7 @@ abstract class BaseQuery
 
             $bind    = $this->bind;
             $total   = $this->count();
-            $results = $this->options($options)->bind($bind)->page($page, $listRows)->select();
+            $results = $total > 0 ? $this->options($options)->bind($bind)->page($page, $listRows)->select() : [];
         } elseif ($simple) {
             $results = $this->limit(($page - 1) * $listRows, $listRows + 1)->select();
             $total   = null;
@@ -750,10 +750,10 @@ abstract class BaseQuery
      * @access public
      * @param mixed             $key    缓存key
      * @param integer|\DateTime $expire 缓存有效期
-     * @param string            $tag    缓存标签
+     * @param string|array      $tag    缓存标签
      * @return $this
      */
-    public function cache($key = true, $expire = null, string $tag = null)
+    public function cache($key = true, $expire = null, $tag = null)
     {
         if (false === $key || !$this->getConnection()->getCache()) {
             return $this;
@@ -826,6 +826,18 @@ abstract class BaseQuery
     public function strict(bool $strict = true)
     {
         $this->options['strict'] = $strict;
+        return $this;
+    }
+
+    /**
+     * 设置自增序列名
+     * @access public
+     * @param string $sequence 自增序列名
+     * @return $this
+     */
+    public function sequence(string $sequence = null)
+    {
+        $this->options['sequence'] = $sequence;
         return $this;
     }
 
@@ -1063,7 +1075,7 @@ abstract class BaseQuery
      * 查找记录
      * @access public
      * @param mixed $data 数据
-     * @return Collection
+     * @return Collection|array|static[]
      * @throws Exception
      * @throws ModelNotFoundException
      * @throws DataNotFoundException
@@ -1097,7 +1109,7 @@ abstract class BaseQuery
      * 查找单条记录
      * @access public
      * @param mixed $data 查询数据
-     * @return array|Model|null
+     * @return array|Model|null|static
      * @throws Exception
      * @throws ModelNotFoundException
      * @throws DataNotFoundException
@@ -1151,10 +1163,6 @@ abstract class BaseQuery
             $this->parseView($options);
         }
 
-        if (!isset($options['field'])) {
-            $options['field'] = '*';
-        }
-
         foreach (['data', 'order', 'join', 'union'] as $name) {
             if (!isset($options[$name])) {
                 $options[$name] = [];
@@ -1179,11 +1187,11 @@ abstract class BaseQuery
 
         if (isset($options['page'])) {
             // 根据页数计算limit
-            list($page, $listRows) = $options['page'];
-            $page                  = $page > 0 ? $page : 1;
-            $listRows              = $listRows ?: (is_numeric($options['limit']) ? $options['limit'] : 20);
-            $offset                = $listRows * ($page - 1);
-            $options['limit']      = $offset . ',' . $listRows;
+            [$page, $listRows] = $options['page'];
+            $page              = $page > 0 ? $page : 1;
+            $listRows          = $listRows ?: (is_numeric($options['limit']) ? $options['limit'] : 20);
+            $offset            = $listRows * ($page - 1);
+            $options['limit']  = $offset . ',' . $listRows;
         }
 
         $this->options = $options;

@@ -3,10 +3,7 @@
 namespace Qcloud\Cos;
 
 use Qcloud\Cos\Exception\ServiceResponseException;
-use Qcloud\Cos\Exception\NoSuchKeyException;
-
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;

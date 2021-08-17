@@ -24,11 +24,11 @@ return [
             // 服务器地址
             'hostname'          => Env::get('database.hostname', 'localhost'),
             // 数据库名
-            'database'          => Env::get('database.database', '172_105_117_27'),
+            'database'          => Env::get('database.database', 'crowtoken_com'),
             // 用户名
-            'username'          => Env::get('database.username', '172_105_117_27'),
+            'username'          => Env::get('database.username', 'crowtoken_com'),
             // 密码
-            'password'          => Env::get('database.password', '4x7kMHbACB4bxyd2'),
+            'password'          => Env::get('database.password', '6JG47ApE6mFebeSN'),
             // 端口
             'hostport'          => Env::get('database.hostport', '3306'),
             // 数据库连接参数

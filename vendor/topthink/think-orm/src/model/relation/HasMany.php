@@ -206,6 +206,10 @@ class HasMany extends Relation
             $closure($this->getClosureType($closure));
         }
 
+        if ($this->withoutField) {
+            $this->query->withoutField($this->withoutField);
+        }
+
         $list = $this->query
             ->where($where)
             ->cache($cache[0] ?? false, $cache[1] ?? null, $cache[2] ?? null)
@@ -340,7 +344,7 @@ class HasMany extends Relation
 
         return $query->group($model . '.' . $this->localKey)
             ->field($fields)
-            ->join([$table => $relation], $model . '.' . $this->localKey . '=' . $relation . '.' . $this->foreignKey)
+            ->join([$table => $relation], $model . '.' . $this->localKey . '=' . $relation . '.' . $this->foreignKey, $joinType)
             ->when($softDelete, function ($query) use ($softDelete, $relation) {
                 $query->where($relation . strstr($softDelete[0], '.'), '=' == $softDelete[1][0] ? $softDelete[1][1] : null);
             })
