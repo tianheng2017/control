@@ -51,18 +51,18 @@ class ExceptionHandle extends Handle
      */
     public function render($request, Throwable $e): Response
     {
-        if ($e instanceof HttpException || $e instanceof ValidateException || $e instanceof ErrorException) {
-            return json([
-                'code'  =>  $e instanceof ValidateException ? 1 : 0,
-                'msg'   =>  $e->getMessage(),
-                'data'  =>  null,
-            ], 200, $header = [
-                'Access-Control-Allow-Headers'     => '*',
-                'Access-Control-Allow-Origin'      => '*',
-                'Access-Control-Allow-Credentials' => 'true',
-                'Access-Control-Allow-Methods'     => 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-            ]);
-        }
+//        if ($e instanceof HttpException || $e instanceof ValidateException || $e instanceof ErrorException) {
+//            return json([
+//                'code'  =>  $e instanceof ValidateException ? 1 : 0,
+//                'msg'   =>  $e->getMessage(),
+//                'data'  =>  null,
+//            ], 200, $header = [
+//                'Access-Control-Allow-Headers'     => '*',
+//                'Access-Control-Allow-Origin'      => '*',
+//                'Access-Control-Allow-Credentials' => 'true',
+//                'Access-Control-Allow-Methods'     => 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+//            ]);
+//        }
         // 其他错误交给系统处理
         return parent::render($request, $e);
     }
