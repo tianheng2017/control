@@ -35,7 +35,7 @@ class Community extends AdminController
         //判断社区有无被引用
         $count = \app\admin\model\Form1::whereIn('community', $ids)->count();
         if ($count) {
-            $this->error('该社区已被他处引用，请解除后再删');
+            $this->error('该社区已被返沙人员引用，请解除后再删');
         }
 
         try {
