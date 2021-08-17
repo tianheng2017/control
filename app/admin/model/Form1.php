@@ -23,5 +23,11 @@ class Form1 extends TimeModel
         return ['0'=>'阴性','1'=>'阳性',];
     }
 
+    public function getCommunityList()
+    {
+        $list = Community::field('name as label,id as value')->select();
+        return $list;
+    }
+
 
 }

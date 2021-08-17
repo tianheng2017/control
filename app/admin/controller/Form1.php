@@ -25,6 +25,7 @@ class Form1 extends AdminController
 
         $this->assign('getCheckResultList', $this->model->getCheckResultList());
 
+        $this->assign('getCommunityList', $this->model->getCommunityList());
     }
 
     /**
