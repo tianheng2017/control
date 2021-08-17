@@ -17,7 +17,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
             ea.table.render({
                 init: init,
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'id', title: 'id'},                    {field: 'name', title: '社区名称'},                    {field: 'mobile', title: '社区电话'},                    {field: 'address', title: '居委会地址'},                    {field: 'create_time', title: 'create_time'},                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {type: 'checkbox'},
+                    {field: 'id', title: 'id'},
+                    {field: 'name', title: '社区名称'},
+                    {field: 'mobile', title: '社区电话'},
+                    {field: 'address', title: '居委会地址'},
+                    {field: 'create_time', title: '创建时间'},
+                    {width: 250, title: '操作', templet: ea.table.tool},
+
                 ]],
             });
 
