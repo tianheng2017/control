@@ -8,7 +8,7 @@ use EasyAdmin\annotation\NodeAnotation;
 use think\App;
 
 /**
- * @ControllerAnnotation(title="validate_code")
+ * @ControllerAnnotation(title="验证码记录")
  */
 class Code extends AdminController
 {
