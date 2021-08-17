@@ -64,7 +64,18 @@ class Form1 extends AdminController
     {
         if ($this->request->isAjax()) {
             $post = $this->request->post();
-            $rule = [];
+            $rule = [
+                'name|姓名'                          =>  'require|chs',
+                'sex|性别'                           =>  'require',
+                'id_card|身份证号'                   =>  'require|idCard',
+                'arrival_time|到沙时间'              =>  'require|date',
+                'check_time|最近一次核酸检测时间'    =>  'require|date',
+                'check_result|核酸检测结果'          =>  'require',
+                'community|居住地所属社区'           =>  'require',
+                'mobile|手机号'                      =>  'require|mobile',
+                'image1|健康码'                      =>  'require',
+                'image2|行程码'                      =>  'require',
+            ];
             $this->validate($post, $rule);
             try {
                 $save = $this->model->save($post);
@@ -85,7 +96,18 @@ class Form1 extends AdminController
         empty($row) && $this->error('数据不存在');
         if ($this->request->isAjax()) {
             $post = $this->request->post();
-            $rule = [];
+            $rule = [
+                'name|姓名'                          =>  'require|chs',
+                'sex|性别'                           =>  'require',
+                'id_card|身份证号'                   =>  'require|idCard',
+                'arrival_time|到沙时间'              =>  'require|date',
+                'check_time|最近一次核酸检测时间'    =>  'require|date',
+                'check_result|核酸检测结果'          =>  'require',
+                'community|居住地所属社区'           =>  'require',
+                'mobile|手机号'                      =>  'require|mobile',
+                'image1|健康码'                      =>  'require',
+                'image2|行程码'                      =>  'require',
+            ];
             $this->validate($post, $rule);
             try {
                 $save = $row->save($post);
