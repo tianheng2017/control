@@ -114,14 +114,14 @@ export default {
 						min: 2,
 						max: 5,
 						message: '姓名长度在2到5个字符',
-						trigger: ['change','blur'],
+						trigger: ['blur'],
 					},
 					{
 						validator: (rule, value, callback) => {
 							return this.$u.test.chinese(value);
 						},
 						message: '姓名必须为中文',
-						trigger: ['change','blur'],
+						trigger: ['blur'],
 					},
 				],
 				sex: [
@@ -147,10 +147,17 @@ export default {
 						trigger: ['change','blur'],
 					},
 				],
-				community: [
+				community_lable: [
 					{
 						required: true,
 						message: '请选择居住地所在社区',
+						trigger: ['change','blur'],
+					},
+				],
+				dosage_lable: [
+					{
+						required: true,
+						message: '请选择接种剂次',
 						trigger: ['change','blur'],
 					},
 				],
@@ -159,8 +166,8 @@ export default {
 						validator: (rule, value, callback) => {
 							return this.$u.test.mobile(value);
 						},
-						message: '请正确手机号码',
-						trigger: ['change','blur'],
+						message: '手机号码格式不正确',
+						trigger: ['blur'],
 					},
 				],
 				code: [
@@ -168,8 +175,8 @@ export default {
 						validator: (rule, value, callback) => {
 							return this.$u.test.code(value, 6);
 						},
-						message: '请填写验证码',
-						trigger: ['change','blur'],
+						message: '请填写6位验证码',
+						trigger: ['blur'],
 					},
 				],
 			},
