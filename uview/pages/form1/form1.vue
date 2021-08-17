@@ -108,12 +108,7 @@ export default {
 					text: '女'
 				},
 			],
-			selectList: [
-				{
-					value: 1,
-					label: 'XXX社区'
-				},
-			],
+			selectList: [],
 			radioList: [
 				{
 					name: '阴性',
@@ -239,7 +234,7 @@ export default {
 		};
 	},
 	onLoad() {
-
+		this.getCommunityFunc()
 	},
 	computed: {
 
@@ -312,6 +307,15 @@ export default {
 				this.$u.toast('倒计时结束后再发送');
 			}
 		},
+		async getCommunityFunc(){
+			const {
+				code,
+				data
+			} = await $this.$u.api.getCommunityList()
+			if (code == 1) {
+				this.selectList = data
+			}
+		}
 	}
 };
 </script>

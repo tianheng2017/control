@@ -10,7 +10,7 @@ class Community extends ApiBaseController
 {
     public function getCommunityList()
     {
-        $list = CommunityModel::column('name','id');
+        $list = CommunityModel::field('name as lable,id as value')->select();
         return result(1,'',$list);
     }
 }
