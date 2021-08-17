@@ -126,52 +126,6 @@ if (!function_exists('auth')) {
     }
 }
 
-if (!function_exists('signToken')) {
-    function signToken($id, $hash){
-        $key = config('jwt.salt');
-        $token = [
-            "iss"   =>  $key,
-            "aud"   =>  '',
-            "iat"   =>  time(),
-            "nbf"   =>  time(),
-            "exp"   =>  time() + config('jwt.expire'),
-            "data"  =>  [
-                'id'       =>  $id,
-                'hash'     =>  $hash,
-            ]
-        ];
-        $jwt = JWT::encode($token, $key, "HS256");
-        return $jwt;
-    }
-}
-
-if (!function_exists('checkToken')) {
-    function checkToken($token){
-        $key = config('jwt.salt');
-        $status = ["code" => 2];
-        try {
-            JWT::$leeway = 60;
-            $decoded = JWT::decode($token, $key, array('HS256'));
-            $arr = json_decode(json_encode($decoded), true);
-            $res['code'] = 0;
-            $res['data'] = $arr['data'];
-            return $res;
-        } catch (\Firebase\JWT\SignatureInvalidException $e) {
-            $status['msg'] = "token签名不正确";
-            return $status;
-        } catch (\Firebase\JWT\BeforeValidException $e) {
-            $status['msg'] = "token失效";
-            return $status;
-        } catch (\Firebase\JWT\ExpiredException $e) {
-            $status['msg'] = "token失效";
-            return $status;
-        } catch (Exception $e) {
-            $status['msg'] = "token未知错误";
-            return $status;
-        }
-    }
-}
-
 if (!function_exists('result')) {
     function result($code, $msg, $data = null, $status = 200){
         $data =  [

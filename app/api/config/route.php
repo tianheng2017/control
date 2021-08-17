@@ -5,13 +5,11 @@
 
 return [
     // 默认控制器名
-    'default_controller'    => 'Error',
+    'default_controller'    => 'Index',
     // 默认操作名
-    'default_action'        => '',
+    'default_action'        => 'index',
     // 路由中间件
     'middleware' => [
-        // 检测Token
-        \app\api\middleware\CheckToken::class,
         // 跨域支持
         \think\middleware\AllowCrossDomain::class,
     ],

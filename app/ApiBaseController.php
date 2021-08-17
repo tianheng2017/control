@@ -70,24 +70,7 @@ abstract class ApiBaseController
     // 初始化
     protected function initialize()
     {
-        $no_login = ['Login','Error'];
 
-        $controller = $this->request->controller();
-        if (!in_array($controller, $no_login)){
-            $user = User::find($this->request->id);
-
-            if (empty($user)){
-                return result(2,'用户不存在');
-            }
-
-            $hash = md5($user->id.$user->password);
-            if ($this->request->hash <> $hash){
-                return result(2,'token失效');
-            }
-
-            $this->id = $user->id;
-            $this->user = $user->hidden(['password']);
-        }
     }
     
     /**
