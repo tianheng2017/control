@@ -98,7 +98,7 @@ export default {
 			codeTips: '',
 			errorType: ['message','border'],
 			buy_way_placeholder: '例：2021年8月14日19点58分从四川省成都市乘坐火车（车次：G25067车厢4F出发）于2021年8月14日24:00到达，而后乘坐私家车到达沙雅县X小区X号楼X单元X楼X户',
-			upload_url: '/common/upload',
+			upload_url: this.$u.http.config.baseUrl + '/api/common/upload',
 			upload_lists: [],
 			actionSheetList: [
 				{
@@ -284,7 +284,7 @@ export default {
 				console.log(index)
 				this.model.community_lable = val.label;
 				this.model.community = val.value;
-				this.selectDefault = [index]
+				this.selectDefault = [val.extra]
 			})
 		},
 		// 验证码倒计时改变
