@@ -40,7 +40,7 @@
 				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择居住地所属社区" @click="selectShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="上传健康码、行程码" prop="photo">
-				<u-upload ref="uUpload" :action="upload_url" width="160" height="160" @on-change="uploadChange" :multiple="false" :max-count="1"></u-upload>
+				<u-upload ref="uUpload" :action="upload_url" width="160" height="160" @on-change="uploadSuccess" :multiple="false" :max-count="1"></u-upload>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="手机号码" prop="mobile">
 				<u-input :border="border" placeholder="请输入手机号" v-model="model.mobile" type="number"></u-input>
@@ -79,7 +79,7 @@ export default {
 				check_time: '',
 				check_result: 0,
 				community: '',
-				photo_id: '',
+				image: '',
 				mobile: '',
 				code: '',
 				code_id:'',
@@ -250,6 +250,7 @@ export default {
 				if (valid) {
 					console.log('验证成功');
 					this.$u.api.saveForm1(this.model).then(res => {
+						console.log(res);
 						if (res.code == 1) {
 							this.$refs.uToast.show({
 								title: '提交成功',
@@ -328,10 +329,11 @@ export default {
 				this.selectList = data
 			}
 		},
-		//上传完成事件
-		uploadChange(res, index, lists, name){
-			if (res.data.code == 1) {
-				this.model.photo_id = res.data.id
+		//上传成功事件
+		uploadSuccess(data, index, lists, name){
+			const res = JSON.parse(data.data)
+			if (res.code == 1) {
+				this.model.image = res.data.url
 			}
 		}
 	}
