@@ -8,7 +8,7 @@ use EasyAdmin\annotation\NodeAnotation;
 use think\App;
 
 /**
- * @ControllerAnnotation(title="community")
+ * @ControllerAnnotation(title="社区管理")
  */
 class Community extends AdminController
 {
