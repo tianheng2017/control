@@ -39,8 +39,11 @@
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="居住地所属社区" prop="community_lable">
 				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择居住地所属社区" @click="selectShow = true"></u-input>
 			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="上传健康码、行程码" prop="photo">
-				<u-upload ref="uUpload" :action="upload_url" width="160" height="160" @on-change="uploadSuccess" :multiple="false" :max-count="1"></u-upload>
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="上传健康码" prop="image1">
+				<u-upload ref="uUpload1" :action="upload_url" width="160" height="160" @on-change="uploadSuccess1" :multiple="false" :max-count="1"></u-upload>
+			</u-form-item>
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="上传行程码" prop="image2">
+				<u-upload ref="uUpload2" :action="upload_url" width="160" height="160" @on-change="uploadSuccess2" :multiple="false" :max-count="1"></u-upload>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="手机号码" prop="mobile">
 				<u-input :border="border" placeholder="请输入手机号" v-model="model.mobile" type="number"></u-input>
@@ -79,7 +82,8 @@ export default {
 				check_time: '',
 				check_result: 0,
 				community: '',
-				image: '',
+				image1: '',
+				image2: '',
 				mobile: '',
 				code: '',
 				code_id:'',
@@ -102,7 +106,8 @@ export default {
 			errorType: ['message','border'],
 			buy_way_placeholder: '例：2021年8月14日19点58分从四川省成都市乘坐火车（车次：G25067车厢4F出发）于2021年8月14日24:00到达，而后乘坐私家车到达沙雅县X小区X号楼X单元X楼X户',
 			upload_url: this.$u.http.config.baseUrl + '/api/common/upload',
-			upload_lists: [],
+			upload_lists1: [],
+			upload_lists2: [],
 			params: {
 				year: true,
 				month: true,
@@ -232,12 +237,33 @@ export default {
 						trigger: ['change','blur'],
 					},
 				],
+				community: [
+					{
+						required: true,
+						message: '请选择居住地所在社区',
+						trigger: ['change','blur'],
+					},
+				],
+				image1: [
+					{
+						required: true,
+						message: '请上传健康码',
+						trigger: ['change','blur'],
+					},
+				],
+				image2: [
+					{
+						required: true,
+						message: '请上传行程码',
+						trigger: ['change','blur'],
+					},
+				],
 				code: [
 					{
 						validator: (rule, value, callback) => {
 							return this.$u.test.code(value, 6);
 						},
-						message: '请填写验证码',
+						message: '请填写6位验证码',
 						trigger: ['change','blur'],
 					},
 				],
@@ -253,7 +279,8 @@ export default {
 	onReady() {
 		this.getCommunityFunc()
 		this.$refs.uForm.setRules(this.rules)
-		this.upload_lists = this.$refs.uUpload.lists
+		this.upload_lists1 = this.$refs.uUpload1.lists
+		this.upload_lists2 = this.$refs.uUpload2.lists
 	},
 	methods: {
 		submit() {
@@ -340,11 +367,18 @@ export default {
 				this.selectList = data
 			}
 		},
-		//上传成功事件
-		uploadSuccess(data, index, lists, name){
+		//健康码上传成功事件
+		uploadSuccess1(data, index, lists, name){
 			const res = JSON.parse(data.data)
 			if (res.code == 1) {
-				this.model.image = res.data.url
+				this.model.image1 = res.data.url
+			}
+		},
+		//行程码上传成功事件
+		uploadSuccess2(data, index, lists, name){
+			const res = JSON.parse(data.data)
+			if (res.code == 1) {
+				this.model.image2 = res.data.url
 			}
 		}
 	}

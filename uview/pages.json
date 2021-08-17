@@ -6,7 +6,9 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "沙雅镇疫情防控管理系统"
+				"navigationBarTitleText": "沙雅镇疫情防控管理系统",
+				"navigationBarBackgroundColor": "#19be6b",
+				"navigationBarTextStyle": "#ffffff"
 			}
 		}
 		,{
@@ -14,6 +16,8 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "返沙人员信息填报",
+				"navigationBarBackgroundColor": "#19be6b",
+				"navigationBarTextStyle": "#ffffff",
                 "enablePullDownRefresh": false
             }
             
@@ -23,6 +27,8 @@
 		    "style" :                                                                                    
 		    {
 		        "navigationBarTitleText": "疫苗接种人员信息填报",
+				"navigationBarBackgroundColor": "#19be6b",
+				"navigationBarTextStyle": "#ffffff",
 		        "enablePullDownRefresh": false
 		    }
 		    

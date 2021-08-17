@@ -1,13 +1,13 @@
 <template>
 	<view class="content">
 		<view class="button-demo">
-			<u-button :ripple="true" :customStyle="customStyle" @click="toForm1">返沙人员信息填报</u-button>
+			<u-button type="primary" :ripple="true" :customStyle="customStyle" @click="toForm1">返沙人员信息填报</u-button>
 		</view>
 		<view class="button-demo">
-			<u-button :ripple="true" :customStyle="customStyle" @click="toForm2">疫苗接种人员信息填报</u-button>
+			<u-button type="success" :ripple="true" :customStyle="customStyle" @click="toForm2">疫苗接种人员信息填报</u-button>
 		</view>
 		<view class="button-demo">
-			<u-button :ripple="true" :customStyle="customStyle">购药人员自主填报</u-button>
+			<u-button type="warning" :ripple="true" :customStyle="customStyle">购药人员自主填报</u-button>
 		</view>
 	</view>
 </template>

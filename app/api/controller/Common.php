@@ -2,11 +2,11 @@
 
 namespace app\api\controller;
 
-use app\ApiBaseController;
+use app\BaseController;
 use EasyAdmin\upload\Uploadfile;
 use think\Exception;
 
-class Common extends ApiBaseController
+class Common extends BaseController
 {
     public function upload()
     {
