@@ -25,7 +25,7 @@ class Index extends BaseController
                 'check_time|最近一次核酸检测时间'    =>  'require|date',
                 'check_result|核酸检测结果'          =>  'require',
                 'community|居住地所属社区'           =>  'require',
-                'mobile|手机号'                      =>   'require|mobile',
+                'mobile|手机号'                      =>  'require|mobile',
                 'image1|健康码'                      =>  'require',
                 'image2|行程码'                      =>  'require',
             ];
