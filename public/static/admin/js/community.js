@@ -18,7 +18,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 init: init,
                 cols: [[
                     {type: 'checkbox'},
-                    {field: 'id', title: 'id'},
+                    {field: 'id', title: 'ID', width: 100},
                     {field: 'name', title: '社区名称'},
                     {field: 'mobile', title: '社区电话'},
                     {field: 'address', title: '居委会地址'},
