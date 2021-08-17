@@ -240,8 +240,8 @@ export default {
 
 	},
 	onReady() {
-		this.$refs.uForm.setRules(this.rules);
-		this.upload_lists = this.$refs.uUpload.lists;
+		this.$refs.uForm.setRules(this.rules)
+		this.upload_lists = this.$refs.uUpload.lists
 	},
 	methods: {
 		submit() {
@@ -311,7 +311,7 @@ export default {
 			const {
 				code,
 				data
-			} = await $this.$u.api.getCommunityList()
+			} = await this.$u.api.getCommunityList()
 			if (code == 1) {
 				this.selectList = data
 			}
