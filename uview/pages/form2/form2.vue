@@ -124,13 +124,6 @@ export default {
 						trigger: ['blur'],
 					},
 				],
-				sex: [
-					{
-						required: true,
-						message: '请选择居住地所在社区',
-						trigger: ['change','blur'],
-					},
-				],
 				id_card: [
 					{
 						validator: (rule, value, callback) => {
@@ -147,10 +140,17 @@ export default {
 						trigger: ['change','blur'],
 					},
 				],
+				vaccination_time: [
+					{
+						required: true,
+						message: '请选择接种时间',
+						trigger: ['change','blur'],
+					},
+				],
 				community_lable: [
 					{
 						required: true,
-						message: '请选择居住地所在社区',
+						message: '请选择居住地所属社区',
 						trigger: ['change','blur'],
 					},
 				],

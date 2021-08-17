@@ -156,7 +156,7 @@ export default {
 						trigger: ['change','blur'],
 					},
 				],
-				sex: [
+				sex_lable: [
 					{
 						required: true,
 						message: '请选择性别',
@@ -221,7 +221,7 @@ export default {
 						trigger: ['change','blur'],
 					},
 				],
-				community: [
+				community_lable: [
 					{
 						required: true,
 						message: '请选择居住地所在社区',
@@ -235,13 +235,6 @@ export default {
 						},
 						message: '手机号码格式不正确',
 						trigger: ['blur'],
-					},
-				],
-				community: [
-					{
-						required: true,
-						message: '请选择居住地所在社区',
-						trigger: ['change','blur'],
 					},
 				],
 				image1: [
