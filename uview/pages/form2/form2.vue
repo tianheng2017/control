@@ -81,14 +81,17 @@ export default {
 				{
 					label:'第1剂',
 					value: 1,
+					extra: 1,
 				}
 				,{
 					label:'第2剂',
 					value: 2,
+					extra: 2,
 				}
 				,{
 					label:'第3剂',
 					value: 3,
+					extra: 3,
 				}
 			],
 			dosageDefault: [0],
@@ -217,7 +220,7 @@ export default {
 			e.map((val, index) => {
 				this.model.dosage_lable = val.label;
 				this.model.dosage = val.value;
-				this.dosageDefault = [0]
+				this.dosageDefault = [val.extra]
 			})
 		},
 		// 选择社区回调
