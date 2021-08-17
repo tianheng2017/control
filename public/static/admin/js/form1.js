@@ -16,6 +16,17 @@ define(["jquery", "easy-admin"], function ($, ea) {
         index: function () {
             ea.table.render({
                 init: init,
+                toolbar: ['refresh',
+                    [{
+                        text: '添加',
+                        url: init.add_url,
+                        method: 'open',
+                        auth: 'add',
+                        class: 'layui-btn layui-btn-normal layui-btn-sm',
+                        icon: 'fa fa-plus ',
+                        extend: 'data-full="true"',
+                    }],
+                    'delete','export'],
                 cols: [[
                     {type: 'checkbox'},
                     {field: 'id', hide: true},
