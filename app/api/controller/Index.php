@@ -3,7 +3,6 @@
 namespace app\api\controller;
 
 use app\admin\model\Form1;
-use app\admin\model\ValidateCode;
 use app\ApiBaseController;
 use think\Exception;
 use think\facade\Db;

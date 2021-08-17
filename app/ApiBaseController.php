@@ -116,15 +116,4 @@ abstract class ApiBaseController
         return $v->failException(true)->check($data);
     }
 
-    // api专用验证器
-    public function apiValidate(array $data, $validate, array $message = [], bool $batch = false)
-    {
-        try {
-            $this->validate($data, $validate, $message, $batch);
-        } catch (\Exception $e) {
-            return result(0, $e->getMessage());
-        }
-        return true;
-    }
-
 }
