@@ -25,8 +25,10 @@ class Form1 extends TimeModel
 
     public function getCommunityList()
     {
+        $arr = [0 => '无'];
         $list = Community::column('name','id');
-        return $list;
+        $new = array_merge($arr, $list);
+        return $new;
     }
 
 
