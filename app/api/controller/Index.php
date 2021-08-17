@@ -42,4 +42,9 @@ class Index extends BaseController
         }
         return result(1,'提交成功');
     }
+
+    public function form2()
+    {
+        return result(0,'开发中');
+    }
 }

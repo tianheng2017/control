@@ -13,11 +13,11 @@
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="居住地所属社区" prop="community_lable">
 				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择居住地所属社区" @click="selectShow = true"></u-input>
 			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="接种时间" prop="arrival_time">
-				<u-input :border="border" type="select" :select-open="arrivalTimeShow" v-model="model.arrival_time" placeholder="请选择接种时间" @click="arrivalTimeShow = true"></u-input>
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="接种时间" prop="vaccination_time">
+				<u-input :border="border" type="select" :select-open="vaccinationTimeShow" v-model="model.vaccination_time" placeholder="请选择接种时间" @click="vaccinationTimeShow = true"></u-input>
 			</u-form-item>
-			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="接种剂次" prop="community_lable">
-				<u-input :border="border" type="select" :select-open="selectShow" v-model="model.community_lable" placeholder="请选择接种剂次" @click="selectShow = true"></u-input>
+			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="接种剂次" prop="dosage_lable">
+				<u-input :border="border" type="select" :select-open="dosageShow" v-model="model.dosage_lable" placeholder="请选择接种剂次" @click="dosageShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-style="labelStyle" :label-position="labelPosition" label="手机号码" prop="mobile">
 				<u-input :border="border" placeholder="请输入手机号" v-model="model.mobile" type="number"></u-input>
@@ -28,12 +28,15 @@
 			</u-form-item>
 		</u-form>
 		<u-button @click="submit" type="success" class="u-margin-top-80 u-margin-bottom-80">提交</u-button>
-		
-		<u-action-sheet :list="actionSheetList" v-model="actionSheetShow" @click="actionSheetCallback"></u-action-sheet>
+		<!-- 居住地所属社区 -->
 		<u-select mode="single-column" :default-value="selectDefault" :list="selectList" v-model="selectShow" @confirm="selectConfirm"></u-select>
-		<u-picker title="到达时间" :start-year="2018" :end-year="2030" mode="time" v-model="arrivalTimeShow" @confirm="arrivalTimeConfirm"></u-picker>
-		<u-picker title="最近一次核酸检测时间" :start-year="2018" :end-year="2030" mode="time" v-model="checkTimeShow" @confirm="checkTimeConfirm"></u-picker>
+		<!-- 接种时间 -->
+		<u-picker :params="params" title="接种时间" :start-year="2018" :end-year="2030" mode="time" v-model="vaccinationTimeShow" @confirm="vaccinationTimeConfirm"></u-picker>
+		<!-- 接种剂次 -->
+		<u-select mode="single-column" :default-value="dosageDefault" :list="dosageList" v-model="dosageShow" @confirm="dosageConfirm"></u-select>
+		<!-- 验证码 -->
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
+		<!-- 弹窗 -->
 		<u-toast ref="uToast" />
 	</view>
 </template>
@@ -48,58 +51,55 @@ export default {
 				sex: '',
 				id_card: '',
 				living: '',
-				domicile: '',
-				employer: '',
-				buy_way: '',
-				arrival_time: '',
-				departure: '',
-				check_time: '',
-				check_result: 0,
 				community: '',
-				image: '',
+				community_lable: '',
+				vaccination_time: '',
+				dosage: '',
+				dosage_lable: '',
 				mobile: '',
 				code: '',
 				code_id:'',
-				community_lable: '',
 			},
-			radio: '阴性',
 			border: true,
 			check: false,
-			actionSheetShow: false,
-			arrivalTimeShow: false,
-			checkTimeShow: false,
+			
 			selectShow: false,
-			radioCheckWidth: 'auto',
-			radioCheckWrap: false,
+			vaccinationTimeShow: false,
+			dosageShow: false,
+			
 			labelPosition: 'top',
 			labelStyle: {
 				fontWeight: 'bold',
 			},
 			codeTips: '',
 			errorType: ['message','border'],
-			buy_way_placeholder: '例：2021年8月14日19点58分从四川省成都市乘坐火车（车次：G25067车厢4F出发）于2021年8月14日24:00到达，而后乘坐私家车到达沙雅县X小区X号楼X单元X楼X户',
-			upload_url: this.$u.http.config.baseUrl + '/api/common/upload',
-			upload_lists: [],
-			actionSheetList: [
-				{
-					text: '男'
-				},
-				{
-					text: '女'
-				},
-			],
+
 			selectList: [],
 			selectDefault: [0],
-			radioList: [
+			
+			dosageList: [
 				{
-					name: '阴性',
-					checked: true,
-				},
-				{
-					name: '阳性',
-					checked: false,
-				},
+					label:'第1剂',
+					value: 1,
+				}
+				,{
+					label:'第2剂',
+					value: 2,
+				}
+				,{
+					label:'第3剂',
+					value: 3,
+				}
 			],
+			dosageDefault: [0],
+			
+			params: {
+				year: true,
+				month: true,
+				day: true,
+				hour: true,
+				minute: true
+			},
 			rules: {
 				name: [
 					{
@@ -144,48 +144,6 @@ export default {
 						trigger: ['change','blur'],
 					},
 				],
-				domicile: [
-					{
-						required: true,
-						message: '请填写户籍所在地',
-						trigger: ['change','blur'],
-					},
-				],
-				employer: [
-					{
-						required: true,
-						message: '请填写工作单位',
-						trigger: ['change','blur'],
-					},
-				],
-				buy_way: [
-					{
-						required: true,
-						message: '请填写出发地、途径地及时间',
-						trigger: ['change','blur'],
-					},
-				],
-				arrival_time: [
-					{
-						required: true,
-						message: '请选择到达时间',
-						trigger: ['change','blur'],
-					},
-				],
-				departure: [
-					{
-						required: true,
-						message: '请填写出发地',
-						trigger: ['change','blur'],
-					},
-				],
-				check_time: [
-					{
-						required: true,
-						message: '请选择最后一次核酸检测时间',
-						trigger: ['change','blur'],
-					},
-				],
 				community: [
 					{
 						required: true,
@@ -223,14 +181,13 @@ export default {
 	onReady() {
 		this.getCommunityFunc()
 		this.$refs.uForm.setRules(this.rules)
-		this.upload_lists = this.$refs.uUpload.lists
 	},
 	methods: {
 		submit() {
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
 					console.log('验证成功');
-					this.$u.api.saveForm1(this.model).then(res => {
+					this.$u.api.saveForm2(this.model).then(res => {
 						console.log(res);
 						if (res.code == 1) {
 							this.$refs.uToast.show({
@@ -250,29 +207,23 @@ export default {
 				}
 			});
 		},
-		// 点击actionSheet回调
-		actionSheetCallback(index) {
-			uni.hideKeyboard();
-			this.model.sex_lable = this.actionSheetList[index].text;
-			this.model.sex = index;
+		// 接种时间回调
+		vaccinationTimeConfirm(e) {
+			this.model.vaccination_time = e.year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e.minute
 		},
-		// 到沙时间回调
-		arrivalTimeConfirm(e) {
-			this.model.arrival_time = e.year + '-' + e.month + '-' + e.day
-		},
-		// 最近一次核酸检测时间回调
-		checkTimeConfirm(e) {
-			this.model.check_time = e.year + '-' + e.month + '-' + e.day
-		},
-		// 最近一次核酸检测结果回调
-		radioChange(index) {
-			this.model.check_result = index
+		// 选择接种剂次回调
+		dosageConfirm(e) {
+			this.model.dosage = '';
+			e.map((val, index) => {
+				this.model.dosage_lable = val.label;
+				this.model.dosage = val.value;
+				this.dosageDefault = [0]
+			})
 		},
 		// 选择社区回调
 		selectConfirm(e) {
 			this.model.community = '';
 			e.map((val, index) => {
-				console.log(index)
 				this.model.community_lable = val.label;
 				this.model.community = val.value;
 				this.selectDefault = [val.extra]
@@ -310,13 +261,6 @@ export default {
 				this.selectList = data
 			}
 		},
-		//上传成功事件
-		uploadSuccess(data, index, lists, name){
-			const res = JSON.parse(data.data)
-			if (res.code == 1) {
-				this.model.image = res.data.url
-			}
-		}
 	}
 };
 </script>
