@@ -37,7 +37,7 @@ class Index extends ApiBaseController
             //最近一次核酸检测阳性报警
             //...
 
-            Form1::create($post);
+            (new Form1())->save($post);
         } catch (\Exception $e) {
             return result(0, $e->getMessage());
         }
