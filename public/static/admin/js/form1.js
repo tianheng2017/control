@@ -29,7 +29,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'community', title: '所属社区'},
                     {field: 'mobile', title: '手机号'},
                     {field: 'create_time', title: '创建时间'},
-                    {width: 250, title: '操作', templet: ea.table.tool},
+                    {width: 180, title: '操作', templet: ea.table.tool},
 
                 ]],
             });
