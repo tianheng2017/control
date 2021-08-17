@@ -4,7 +4,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-block">
-                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入姓名" value="{$row.name|default=''}">
+                <input type="text" name="name" class="layui-input" placeholder="请输入姓名" value="{$row.name|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -19,31 +19,31 @@
         <div class="layui-form-item">
             <label class="layui-form-label">身份证号</label>
             <div class="layui-input-block">
-                <input type="text" name="id_card" class="layui-input" lay-verify="required" placeholder="请输入身份证号" value="{$row.id_card|default=''}">
+                <input type="text" name="id_card" class="layui-input" placeholder="请输入身份证号" value="{$row.id_card|default=''}">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">现居住地址</label>
             <div class="layui-input-block">
-                <textarea name="living" class="layui-textarea" lay-verify="required" placeholder="请输入现居住地址">{$row.living|raw|default=''}</textarea>
+                <textarea name="living" class="layui-textarea" placeholder="请输入现居住地址">{$row.living|raw|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">户籍所在地</label>
             <div class="layui-input-block">
-                <textarea name="domicile" class="layui-textarea" lay-verify="required" placeholder="请输入户籍所在地">{$row.domicile|raw|default=''}</textarea>
+                <textarea name="domicile" class="layui-textarea" placeholder="请输入户籍所在地">{$row.domicile|raw|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">工作单位</label>
             <div class="layui-input-block">
-                <input type="text" name="employer" class="layui-input" lay-verify="required" placeholder="请输入工作单位" value="{$row.employer|default=''}">
+                <input type="text" name="employer" class="layui-input" placeholder="请输入工作单位" value="{$row.employer|default=''}">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">出发地、路径地及时间</label>
             <div class="layui-input-block">
-                <textarea name="buy_way" class="layui-textarea" lay-verify="required" placeholder="请输入出发地、路径地及时间">{$row.buy_way|raw|default=''}</textarea>
+                <textarea name="buy_way" class="layui-textarea" placeholder="请输入出发地、路径地及时间">{$row.buy_way|raw|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -55,7 +55,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">出发地</label>
             <div class="layui-input-block">
-                <textarea name="departure" class="layui-textarea" lay-verify="required" placeholder="请输入出发地">{$row.departure|raw|default=''}</textarea>
+                <textarea name="departure" class="layui-textarea" placeholder="请输入出发地">{$row.departure|raw|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -76,7 +76,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">居住地所属社区</label>
             <div class="layui-input-block">
-                <select name="community" lay-verify="required">
+                <select name="community">
 
                 </select>
             </div>
@@ -84,7 +84,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">健康码</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="image1" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传健康码" value="{$row.image1|default=''}">
+                <input name="image1" class="layui-input layui-col-xs6"  placeholder="请上传健康码" value="{$row.image1|default=''}">
                 <div class="layuimini-upload-btn">
                     <span><a class="layui-btn" data-upload="image1" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
                     <span><a class="layui-btn layui-btn-normal" id="select_image1" data-upload-select="image1" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
@@ -94,7 +94,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label required">行程码</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="image2" class="layui-input layui-col-xs6" lay-verify="required"  placeholder="请上传行程码" value="{$row.image2|default=''}">
+                <input name="image2" class="layui-input layui-col-xs6"  placeholder="请上传行程码" value="{$row.image2|default=''}">
                 <div class="layuimini-upload-btn">
                     <span><a class="layui-btn" data-upload="image2" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
                     <span><a class="layui-btn layui-btn-normal" id="select_image2" data-upload-select="image2" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
@@ -104,7 +104,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-block">
-                <input type="text" name="mobile" class="layui-input" lay-verify="required" placeholder="请输入手机号" value="{$row.mobile|default=''}">
+                <input type="text" name="mobile" class="layui-input" placeholder="请输入手机号" value="{$row.mobile|default=''}">
             </div>
         </div>
         <div class="hr-line"></div>
