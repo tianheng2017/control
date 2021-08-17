@@ -5,7 +5,6 @@ namespace app\api\controller;
 use app\admin\model\Form1;
 use app\BaseController;
 use think\Exception;
-use think\facade\Db;
 
 class Index extends BaseController
 {
