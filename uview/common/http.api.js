@@ -1,7 +1,8 @@
-let form1_url = '/api/index/form1';
-
 const install = (Vue, vm) => {
-	let save_form1 = (params = {}) => vm.$u.post(form1_url, params);
+	
+	// 返沙人员信息填报
+	let save_form1 = (params = {}) => vm.$u.post('/api/index/form1', params);
+	
 	vm.$u.api = {save_form1};
 }
 
