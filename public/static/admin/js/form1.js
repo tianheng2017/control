@@ -26,7 +26,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'departure', title: '出发地'},
                     {field: 'check_time', title: '最近核酸检测时间'},
                     {field: 'check_result', search: 'select', selectList: ["阴性","阳性"], title: '检测结果'},
-                    {field: 'community', title: '所属社区'},
+                    {field: 'community', title: '所属社区', selectList: getCommunityList},
                     {field: 'mobile', title: '手机号'},
                     {field: 'create_time', title: '创建时间'},
                     {width: 180, title: '操作', templet: ea.table.tool},

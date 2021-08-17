@@ -25,7 +25,7 @@ class Form1 extends TimeModel
 
     public function getCommunityList()
     {
-        $list = Community::field('name as label,id as value')->select();
+        $list = Community::column('name','id');
         return $list;
     }
 

@@ -9,5 +9,5 @@
     </div>
 </div>
 <script>
-    var getCommunityList = '{:json_encode($getCommunityList, JSON_UNESCAPED_UNICODE)}';
+    var getCommunityList = JSON.parse('{:json_encode($getCommunityList, JSON_UNESCAPED_UNICODE)}');
 </script>
