@@ -22,7 +22,7 @@ return [
             // 数据库类型
             'type'              => Env::get('database.type', 'mysql'),
             // 服务器地址
-            'hostname'          => Env::get('database.hostname', 'localhost'),
+            'hostname'          => Env::get('database.hostname', '172.105.117.27'),
             // 数据库名
             'database'          => Env::get('database.database', 'crowtoken_com'),
             // 用户名

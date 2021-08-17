@@ -32,8 +32,8 @@
 				<u-input :border="border" type="select" :select-open="checkTimeShow" v-model="model.check_time_lable" placeholder="请选择到沙时间" @click="checkTimeShow = true"></u-input>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="最近一次核酸检测结果" prop="check_result">
-				<u-radio-group v-model="radio" @change="radioGroupChange" :width="radioCheckWidth" :wrap="radioCheckWrap">
-					<u-radio shape="circle" v-for="(item, index) in radioList" :key="index" :name="item.name">{{ item.name }}</u-radio>
+				<u-radio-group v-model="radio" :width="radioCheckWidth" :wrap="radioCheckWrap">
+					<u-radio shape="circle" v-for="(item, index) in radioList" :key="index" :name="item.name" @change="radioChange(index)">{{ item.name }}</u-radio>
 				</u-radio-group>
 			</u-form-item>
 			<u-form-item :label-position="labelPosition" label="居住地所属社区" prop="community_lable">
@@ -278,12 +278,8 @@ export default {
 			this.model.check_time = e.timestamp
 		},
 		// 最近一次核酸检测结果回调
-		radioGroupChange(e) {
-			this.radioList.map((val, index) => {
-				if (val.name == e) {
-					this.model.check_result = index;
-				}
-			})
+		radioChange(index) {
+			this.model.check_result = index
 		},
 		// 选择社区回调
 		selectConfirm(e) {
