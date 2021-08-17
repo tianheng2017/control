@@ -57,6 +57,7 @@
 		<u-picker title="到达时间" :start-year="2018" :end-year="2030" mode="time" v-model="arrivalTimeShow" @confirm="arrivalTimeConfirm"></u-picker>
 		<u-picker title="最近一次核酸检测时间" :start-year="2018" :end-year="2030" mode="time" v-model="checkTimeShow" @confirm="checkTimeConfirm"></u-picker>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
@@ -249,7 +250,18 @@ export default {
 				if (valid) {
 					console.log('验证成功');
 					this.$u.api.saveForm1(this.model).then(res => {
-						console.log(res);
+						if (res.code == 1) {
+							this.$refs.uToast.show({
+								title: '提交成功',
+								type: 'success',
+								url: 'pages/index/index',
+							})
+							return;
+						}
+						this.$refs.uToast.show({
+							title: '提交失败：' + res.msg,
+							type: 'default',
+						})
 					})
 				} else {
 					console.log('验证失败');
