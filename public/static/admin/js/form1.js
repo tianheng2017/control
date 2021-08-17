@@ -29,8 +29,28 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'community', title: '所属社区', selectList: getCommunityList},
                     {field: 'mobile', title: '手机号'},
                     {field: 'create_time', title: '创建时间'},
-                    {width: 180, title: '操作', templet: ea.table.tool},
-
+                    {
+                        width: 120,
+                        title: '操作',
+                        templet: ea.table.tool,
+                        operat: [
+                            [{
+                                text: '编辑',
+                                url: init.edit_url,
+                                method: 'open',
+                                auth: 'edit',
+                                class: 'layui-btn layui-btn-xs layui-btn-success',
+                                extend: 'data-full="true"'
+                            }, {
+                                text: '删除',
+                                title: '确定删除？',
+                                url: init.delete_url,
+                                method: 'request',
+                                auth: 'delete',
+                                class: 'layui-btn layui-btn-xs layui-btn-danger',
+                            }]
+                        ]
+                    }
                 ]],
             });
 
