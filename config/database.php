@@ -22,13 +22,13 @@ return [
             // 数据库类型
             'type'              => Env::get('database.type', 'mysql'),
             // 服务器地址
-            'hostname'          => Env::get('database.hostname', '172.105.117.27'),
+            'hostname'          => Env::get('database.hostname', 'localhost'),
             // 数据库名
-            'database'          => Env::get('database.database', 'crowtoken_com'),
+            'database'          => Env::get('database.database', 'admin_rjs_xyz'),
             // 用户名
-            'username'          => Env::get('database.username', 'crowtoken_com'),
+            'username'          => Env::get('database.username', 'admin_rjs_xyz'),
             // 密码
-            'password'          => Env::get('database.password', '6JG47ApE6mFebeSN'),
+            'password'          => Env::get('database.password', 'WXaJJyzMzA5RsAfm'),
             // 端口
             'hostport'          => Env::get('database.hostport', '3306'),
             // 数据库连接参数
